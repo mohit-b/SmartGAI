@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SmartGAI — Chat</title>
+
+    <!-- Roboto for a clean, system-like look. Fallbacks included. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Dialogflow messenger styles (keeps external look/feel) -->
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+
+    <style>
+      /* Container placement and theme customizations for the chat widget.
+         Use a compact, mobile-friendly placement and valid CSS values. */
+      /* Make the df-messenger widget occupy the full viewport. This places
+         the chat as a full-screen overlay while preserving the theme vars. */
+      df-messenger {
+        position: fixed;
+        inset: 0;                    /* top:0; right:0; bottom:0; left:0 */
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        z-index: 9999;
+
+        /* Dialogflow CSS variables to customize colors & fonts */
+        --df-messenger-font-color: #000;
+        --df-messenger-font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --df-messenger-chat-background: #f3f6fc;
+        --df-messenger-message-user-background: #d3e3fd;
+        --df-messenger-message-bot-background: #fff;
+      }
+
+      /* Improve focus visibility for keyboard users */
+      df-messenger *:focus {
+        outline: 3px solid rgba(21,156,228,0.35);
+        outline-offset: 2px;
+      }
+    </style>
+
+    <!-- Dialogflow messenger script provides the custom element. Keep it in head so the element is defined before use. -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Visible page heading improves accessibility for screen readers -->
+    <h1 class="sr-only" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">SmartGAI Chat</h1>
+
+    <!-- The Dialogflow chat widget. Project and agent IDs are provided by the developer. -->
+    <main role="application" aria-label="SmartGAI chat widget">
+      <df-messenger
+        location="us-central1"
+        project-id="smartgai"
+        agent-id="c67a6689-0dab-4bb8-b7f7-5af20e59108e"
+        language-code="en"
+        max-query-length="-1">
+        <df-messenger-chat chat-title="SmartGAI"></df-messenger-chat>
+      </df-messenger>
+    </main>
+
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+      <div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35);padding:24px;z-index:9999;">
+        <div style="background:#fff;padding:18px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.08);max-width:420px;">
+        <strong>Chat unavailable</strong>
+        <p style="margin:6px 0 0;font-size:13px;color:#333">This chat requires JavaScript. Please enable JavaScript or contact support at <a href="mailto:support@example.com">support@example.com</a>.</p>
+        </div>
+      </div>
+    </noscript>
+  </body>
+</html>
